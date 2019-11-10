@@ -3,6 +3,7 @@ import pandas as pd
 import statsmodels.api as sm
 import numpy as np
 import DataHelper
+#import pyspark
 '''
 Download monthly prices of Facebook and S&P 500 index from 2014 to 2017
 CSV file downloaded from Yahoo File
@@ -44,4 +45,9 @@ def individual_Beta(ind_data, stand_data):
     print(results.params[1])
     return results.params[1]
 
-individual_Beta('./mergedQSTKandKaggleData/AA.csv', './mergedQSTKandKaggleData/SPY.csv')
+#use DataHelper to get data
+dh = DataHelper.DataHelper()
+example_stock_list = "CHK AMD GE UBER BAC GDX BABA KR FIT GOLD AAPL M MS SIRI MSFT".split(" ")
+example_df = dh.get_data(example_stock_list[:3])
+print(example_df)
+#individual_Beta('./mergedQSTKandKaggleData/AA.csv', './mergedQSTKandKaggleData/SPY.csv')
