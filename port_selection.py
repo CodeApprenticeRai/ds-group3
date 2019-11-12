@@ -12,6 +12,7 @@ def individual_Beta(ind_data, stand_data):
     ind_stock = pd.read_csv(ind_data, parse_dates=True, index_col='date',sep = ',')
     sp_500 = pd.read_csv(stand_data, parse_dates=True, index_col='date', sep = ',')
     # joining the closing prices of the two datasets 
+    #use recent 3 yrs data for training
     monthly_prices = pd.concat([ind_stock.iloc[:,3], sp_500.iloc[:,3]], axis=1)
     monthly_prices.columns = ['ind', 'SP500']
 
@@ -46,7 +47,7 @@ def all_beta(s_list, dPath, mPath):
     for stock in s_list:
         stock_path = dPath + str(stock) + '.csv'
         stock_Beta = individual_Beta(stock_path, mPath)
-        if stock_Beta >= 0 and stock_Beta <= 100:
+        if stock_Beta >= -20 and stock_Beta <= 100:
             b_list.append((stock, stock_Beta))
         else:
             print(stock, stock_Beta)
@@ -73,10 +74,8 @@ for filename in os.listdir(dataPath):
             stock_list.append(filename[:-4])
 
 beta_list = all_beta(stock_list, dataPath, marketPath)
+'''
 print(max(n for _, n in beta_list if n > 0))
 print(sum(n for _, n in beta_list if n > 0)/len(beta_list))
 '''
-test_list = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
-test_list.append((6, 6))
-print(findPorts(test_list, 4, 14))
-'''
+print(findPorts(beta_list, 4, 6))
