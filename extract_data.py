@@ -49,18 +49,18 @@ def individual_Beta(ind_data, stand_data):
 
 
 #stock list(all file names)
-stock_list = ['ACAS', 'ANDV', 'APC', 'APOL', 'ARG', 'BCR', 'BDK', 'BEAM', 'BF.B', 'BJS', 'BMS', 'BRCM', 'BRLI', 'CAM', 'CBG', 'CCMO', 'CFC+A', 'CFN', 'COH', 'CPWR', 'CVC', 'DPS', 'DV', 'DWDP', 'EDS', 'EK', 'ERTS', 'ESV', 'FDO', 'FMCC', 'FNMA', 'FRX', 'GENZ', 'GGP', 'HCBK', 'HCN', 'HRS', 'HSP', 'IACI', 'JAVA', 'JDSU', 'JNS', 'JOY', 'KFT', 'KG', 'KORS', 'LEHMQ', 'LIZ', 'LLL', 'LLTC', 'LO', 'LTD', 'LUK', 'LXK', 'MHP', 'MHS', 'MI', 'MIL', 'MJN', 'MON', 'MWV', 'MWW', 'MYL', 'NAVI', 'NBL', 'NBR', 'NCC', 'NCLH', 'NDAQ', 'NE', 'NEE', 'NEM', 'NFLX', 'NFX', 'NI', 'NKE', 'NLSN', 'NOC', 'NOV', 'NOVL', 'NRG', 'NSC', 'NSM', 'NTAP', 'NTRS', 'NU', 'NUE', 'NVDA', 'NVLS', 'NWL', 'NWS', 'NWSA', 'NYT', 'NYX', 'O', 'ODP', 'OI', 'OKE', 'OMC', 'OMX', 'ORCL', 'ORLY', 'OXY', 'PAYX', 'PBCT', 'PBG', 'PBI', 'PCAR', 'PCG', 'PCL', 'PCLN', 'PCP', 'PCS', 'PDCO', 'PEG', 'PEP', 'PFE', 'PFG', 'PG', 'PGN', 'PGR', 'PH', 'PHM', 'PKG', 'PKI', 'PLD', 'PLL', 'PM', 'PNC', 'PNR', 'PNW', 'POM', 'PPG', 'PPL', 'PRGO', 'PRU', 'PSA', 'PSX', 'PTV', 'PVH', 'PWR', 'PX', 'PXD', 'PYPL', 'Q', 'QCOM', 'QEP', 'QLGC', 'QRVO', 'R', 'RAI', 'RCL', 'RDC', 'RE', 'REG', 'REGN', 'RF', 'RHI', 'RHT', 'RIG', 'RJF', 'RL', 'RMD', 'ROH', 'ROK', 'ROP', 'ROST', 'RRC', 'RRD', 'RSG', 'RSH', 'RTN', 'S', 'SAF', 'SAI', 'SBAC', 'SBUX', 'SCG', 'SCHW', 'SDS', 'SE', 'SEE', 'SGP', 'SH', 'SHLD', 'SHW', 'SIAL', 'SIG', 'SII', 'SINE_FAST', 'SINE_FAST_NOISE', 'SINE_SLOW', 'SINE_SLOW_NOISE', 'SJM', 'SLB', 'SLE', 'SLG', 'SLM', 'SNDK', 'SNI', 'SPLS', 'STJ', 'SVU', 'SWY', 'T', 'TE', 'TIE', 'TMK', 'TSO', 'TWC', 'TYC', 'VIA.B', 'WAG', 'WAMUQ', 'WFM', 'WFR', 'WFT', 'WIN', 'WLP', 'WPI', 'WPO', 'WWY', 'WYE', 'WYN', 'XTO', 'YHOO', 'ZMH']
-print(len(stock_list))
-'''
+#stock_list = ['ACAS', 'ANDV', 'APC', 'APOL', 'ARG', 'BCR', 'BDK', 'BEAM', 'BF.B', 'BJS', 'BMS', 'BRCM', 'BRLI', 'CAM', 'CBG', 'CCMO', 'CFC+A', 'CFN', 'COH', 'CPWR', 'CVC', 'DPS', 'DV', 'DWDP', 'EDS', 'EK', 'ERTS', 'ESV', 'FDO', 'FMCC', 'FNMA', 'FRX', 'GENZ', 'GGP', 'HCBK', 'HCN', 'HRS', 'HSP', 'IACI', 'JAVA', 'JDSU', 'JNS', 'JOY', 'KFT', 'KG', 'KORS', 'LEHMQ', 'LIZ', 'LLL', 'LLTC', 'LO', 'LTD', 'LUK', 'LXK', 'MHP', 'MHS', 'MI', 'MIL', 'MJN', 'MON', 'MWV', 'MWW', 'MYL', 'NAVI', 'NBL', 'NBR', 'NCC', 'NCLH', 'NDAQ', 'NE', 'NEE', 'NEM', 'NFLX', 'NFX', 'NI', 'NKE', 'NLSN', 'NOC', 'NOV', 'NOVL', 'NRG', 'NSC', 'NSM', 'NTAP', 'NTRS', 'NU', 'NUE', 'NVDA', 'NVLS', 'NWL', 'NWS', 'NWSA', 'NYT', 'NYX', 'O', 'ODP', 'OI', 'OKE', 'OMC', 'OMX', 'ORCL', 'ORLY', 'OXY', 'PAYX', 'PBCT', 'PBG', 'PBI', 'PCAR', 'PCG', 'PCL', 'PCLN', 'PCP', 'PCS', 'PDCO', 'PEG', 'PEP', 'PFE', 'PFG', 'PG', 'PGN', 'PGR', 'PH', 'PHM', 'PKG', 'PKI', 'PLD', 'PLL', 'PM', 'PNC', 'PNR', 'PNW', 'POM', 'PPG', 'PPL', 'PRGO', 'PRU', 'PSA', 'PSX', 'PTV', 'PVH', 'PWR', 'PX', 'PXD', 'PYPL', 'Q', 'QCOM', 'QEP', 'QLGC', 'QRVO', 'R', 'RAI', 'RCL', 'RDC', 'RE', 'REG', 'REGN', 'RF', 'RHI', 'RHT', 'RIG', 'RJF', 'RL', 'RMD', 'ROH', 'ROK', 'ROP', 'ROST', 'RRC', 'RRD', 'RSG', 'RSH', 'RTN', 'S', 'SAF', 'SAI', 'SBAC', 'SBUX', 'SCG', 'SCHW', 'SDS', 'SE', 'SEE', 'SGP', 'SH', 'SHLD', 'SHW', 'SIAL', 'SIG', 'SII', 'SINE_FAST', 'SINE_FAST_NOISE', 'SINE_SLOW', 'SINE_SLOW_NOISE', 'SJM', 'SLB', 'SLE', 'SLG', 'SLM', 'SNDK', 'SNI', 'SPLS', 'STJ', 'SVU', 'SWY', 'T', 'TE', 'TIE', 'TMK', 'TSO', 'TWC', 'TYC', 'VIA.B', 'WAG', 'WAMUQ', 'WFM', 'WFR', 'WFT', 'WIN', 'WLP', 'WPI', 'WPO', 'WWY', 'WYE', 'WYN', 'XTO', 'YHOO', 'ZMH']
+#print(len(stock_list))
+
+stock_list = []
 for filename in os.listdir('./mergedQSTKandKaggleData/'):
     #a stock file
     if filename[-3:] == 'csv':
         if filename[:4] != 'ML4T' and filename[0] != '$' :
             stock_list.append(filename[:-4])
-'''
+
 #use DataHelper to get data
 dh = DataHelper.DataHelper()
 nonExist = dh.get_data(stock_list)
 #stocks_df = dh.get_data(stock_list)
-print(nonExist)
-#individual_Beta('./mergedQSTKandKaggleData/AA.csv', './mergedQSTKandKaggleData/SPY.csv')
+#print(nonExist)
