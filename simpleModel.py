@@ -85,6 +85,6 @@ print(max(n for _, n in beta_list if n > 0))
 print(sum(n for _, n in beta_list if n > 0)/len(beta_list))
 '''
 
-#generate portfolios
+#generate portfolios brute force
 print('selecting portfolios')
 print(findPorts(beta_list, 4, 6))
