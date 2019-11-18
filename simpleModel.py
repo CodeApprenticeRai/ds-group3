@@ -7,10 +7,17 @@ import os
 import time
 import itertools
 
+'''
+    * In individual_Beta, can make sp_500 persistent, to avoid multiple readings. 
+    * Individual Beta should be parameterizeable by date, i.e., date_range should be an argument
+    * all_beta results can be cached which will result in a significant speedup given the same date-range
+    * there is an assumption being made that the the beta for portfolio of stocks is the sum of the individual betas. 
+'''
+
 def individual_Beta(ind_data, stand_data):
     #change to our data
     ind_stock = pd.read_csv(ind_data, parse_dates=True, index_col='date',sep = ',')
-    sp_500 = pd.read_csv(stand_data, parse_dates=True, index_col='date', sep = ',')
+    sp_500 = pd.read_csv(stand_data, parse_dates=True, index_col='date', sep = ',') 
     # joining the closing prices of the two datasets 
     #use recent 1 yrs data for training
     monthly_prices = pd.concat([ind_stock.iloc[0:216,3], sp_500.iloc[0:216,3]], axis=1)
@@ -62,8 +69,8 @@ generate portfolios
 def findPorts(s_list, num, thre):#stock list, size of portfolio, threshold
     port_list = []
     for cand_port in set(itertools.combinations(s_list, num)):
-        beta_sum = sum(n for _, n in cand_port)
-        if(beta_sum >= thre):
+        beta_sum = sum(n for _ , n in cand_port)
+        if (beta_sum >= thre):
             port_list.append(cand_port)
     return port_list
 
