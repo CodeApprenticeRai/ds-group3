@@ -4,13 +4,12 @@ import statsmodels.api as sm
 import numpy as np
 import DataHelper
 import os
-import time
 import itertools
 
 def individual_Beta(ind_data, stand_data):
     #change to our data
-    ind_stock = pd.read_csv(ind_data, parse_dates=True, index_col='date',sep = ',')
-    sp_500 = pd.read_csv(stand_data, parse_dates=True, index_col='date', sep = ',')
+    ind_stock = pd.read_csv(ind_data, parse_dates=True, index_col='Date',sep = ',')
+    sp_500 = pd.read_csv(stand_data, parse_dates=True, index_col='Date', sep = ',')
     # joining the closing prices of the two datasets 
     #use recent 1 yrs data for training
     monthly_prices = pd.concat([ind_stock.iloc[0:216,3], sp_500.iloc[0:216,3]], axis=1)
@@ -43,7 +42,7 @@ def individual_Beta(ind_data, stand_data):
         return 0
 
 def individual_features(ind_data, stand_data):
-    print('\n', ind_data)
+    #print('\n', ind_data)
     
     #change to our data
     ind_stock = pd.read_csv(ind_data, parse_dates=True, index_col='date',sep = ',')
@@ -58,12 +57,14 @@ def individual_features(ind_data, stand_data):
 
     # joining the closing prices of the two datasets 
     #use recent 1 yrs data for training
-    daily_prices = pd.concat([ind_stock.iloc[0:216,3], sp_500.iloc[0:216,3]], axis=1)
+    daily_prices = pd.concat([ind_stock.loc['2012-09-12':'2012-01-03','close'], sp_500.loc['2012-09-12':'2012-01-03','close']], axis=1)
     daily_prices.columns = ['ind', 'SP500']
     
     #basic values
     C_t = daily_prices.iloc[1, 0]
     C_s = daily_prices.iloc[-1, 0]
+    H_t = ind_stock.iloc[1, 1]
+    L_t = ind_stock.iloc[1, 2]
     #print(C_t, C_s)
     #highest of high and lowest of low
     HH = ind_stock['high'].max()
@@ -76,19 +77,19 @@ def individual_features(ind_data, stand_data):
     moment = C_t/C_s
     err = 1e-12 #deal with 0
     #William
-    try:
+    if(HH != LL):
         Wil = (HH - C_t)/(HH - LL)
-    except:
+    else:
         Wil = (HH - C_t)/(HH - LL + err)
     ROC = (C_t - C_s)/C_s
     D5_disp = C_t/MA_5
-    try:
-        Stoch = (C_t - ind_stock.iloc[1, 2])/(ind_stock.iloc[1, 1] - ind_stock.iloc[1, 2])
-    except:
-        Stoch = (C_t - ind_stock.iloc[1, 2])/(ind_stock.iloc[1, 1] - ind_stock.iloc[1, 2] + err)
+    if(H_t != L_t):
+        Stoch = (C_t - L_t)/(H_t - L_t)
+    else:
+        Stoch = (C_t - L_t)/(H_t - L_t + err)
     PVT = (C_t - daily_prices.iloc[2, 0])/daily_prices.iloc[2, 0] * ind_stock.iloc[1, 4]
-    return [moment, Wil, ROC, D5_disp, Stoch, PVT]
-
+    res = [moment, Wil, ROC, D5_disp, Stoch, PVT]
+    return res
 
 '''
 compute beta for all individual stocks
@@ -111,7 +112,7 @@ def all_features(s_list, dPath, mPath):
     f_list = []
     for stock in s_list:
         stock_path = dPath + str(stock) + '.csv'
-        f_list.append((stock, individual_features(stock_path, mPath)))
+        f_list.append(individual_features(stock_path, mPath))
         
         '''
         if stock_Beta >= -20 and stock_Beta <= 100:
@@ -133,6 +134,7 @@ def findPorts(s_list, num, thre):#stock list, size of portfolio, threshold
     return port_list
 
 #get stock list
+#For Alpha data, col names are lower case. For merged QSTK data, col names are upper case, sep is ", "
 dataPath = './AlphaData/'
 marketPath = dataPath + 'SPY.csv'
 stock_list = []
@@ -143,17 +145,19 @@ for filename in os.listdir(dataPath):
             stock_list.append(filename[:-4])
 
 #compute all beta
-#beta_list = all_beta(stock_list, dataPath, marketPath)
-#print(beta_list)
 '''
-print(max(n for _, n in beta_list if n > 0))
-print(sum(n for _, n in beta_list if n > 0)/len(beta_list))
+beta_list = all_beta(stock_list, dataPath, marketPath)
+print(beta_list)
 '''
 
 #compute all features
+'''
 feature_list = all_features(stock_list, dataPath, marketPath)
 for f in feature_list:
     print(f)
+'''
 #generate portfolios
-#print('selecting portfolios')
-#print(findPorts(beta_list, 4, 6))
+'''
+print('selecting portfolios')
+print(findPorts(beta_list, 4, 6))
+'''
