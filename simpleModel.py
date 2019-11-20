@@ -68,7 +68,8 @@ generate portfolios
 '''
 def findPorts(s_list, num, thre):#stock list, size of portfolio, threshold
     port_list = []
-    for cand_port in set(itertools.combinations(s_list, num)):
+    cand_portfolios = set(itertools.combinations(s_list, num))
+    for cand_port in cand_portfolios:
         beta_sum = sum(n for _ , n in cand_port)
         if (beta_sum >= thre):
             port_list.append(cand_port)
@@ -78,19 +79,24 @@ def findPorts(s_list, num, thre):#stock list, size of portfolio, threshold
 dataPath = './AlphaData/'
 marketPath = dataPath + 'SPY.csv'
 stock_list = []
-for filename in os.listdir(dataPath):
-    #a stock file
+
+i = 0
+directory_contents = os.listdir(dataPath)
+while( i < min(20, len(directory_contents)) ):
+    filename = directory_contents[i]
     if filename[-3:] == 'csv':
         if filename[:4] != 'ML4T' and filename[0] != '$' :
             stock_list.append(filename[:-4])
+    i += 1
+
+# for filename in os.listdir(dataPath):
+#     #a stock file
+#     if filename[-3:] == 'csv':
+#         if filename[:4] != 'ML4T' and filename[0] != '$' :
+#             stock_list.append(filename[:-4])
 
 #compute all beta
 beta_list = all_beta(stock_list, dataPath, marketPath)
-#print(beta_list)
-'''
-print(max(n for _, n in beta_list if n > 0))
-print(sum(n for _, n in beta_list if n > 0)/len(beta_list))
-'''
 
 #generate portfolios brute force
 print('selecting portfolios')
