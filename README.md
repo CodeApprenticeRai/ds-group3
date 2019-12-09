@@ -1,14 +1,16 @@
 <h1>Portfolio Engineering: A Data Science Approach</h1>
 
 <h3>Dependencies:</h3>
-1) QSTK 0.2.8
-2) numpy 1.6.1,
-3) scipy 0.9.0,
-4) matplotlib  1.1.0,
-5) pandas  0.7.3,
-5) python-dateutil 1.5,
-6) cvxopt  1.1.3,
-7) scikit-learn  0.1
+<ol type="1">
+<li> QSTK 0.2.8 </li>
+2) <li>numpy 1.6.1 </li>
+3) <li>scipy 0.9.0 </li>
+4) <li>matplotlib  1.1.0 </li>
+5) <li>pandas  0.7.3 </li>
+5) <li>python-dateutil 1.5 </li>
+6) <li>cvxopt  1.1.3 </li>
+7) <li>scikit-learn  0.1 </li>
+</ol>
 
 Because QSTK is no longer maintained older versions of dependencies are needed.
 
