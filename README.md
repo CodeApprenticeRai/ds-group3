@@ -21,7 +21,7 @@ Because QSTK is no longer maintained older versions of dependencies are needed.
 1) Open a terminal: 
 `$python proj1.py`
 
-2) open a new terminal:
+2) Open a new terminal:
 `$python client.py`
 
 3) Using the proj1 menu select 1 to ensure the client is connected.
