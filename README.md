@@ -26,3 +26,7 @@ Because QSTK is no longer maintained older versions of dependencies are needed.
 
 3) Using the proj1 menu select 1 to ensure the client is connected.
 4) Begin the calculations and testing by selecting 3.
+
+<ul>
+  <li> Additional clients can be added by repeating step 2.
+<\ul>
