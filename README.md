@@ -1,6 +1,6 @@
-#Portfolio Engineering: A Data Science Approach
+<h1>Portfolio Engineering: A Data Science Approach</h1>
 
-##Dependencies:
+<h3>Dependencies:</h3>
 1) QSTK 0.2.8
 2) numpy 1.6.1,
 3) scipy 0.9.0,
@@ -12,6 +12,6 @@
 
 Because QSTK is no longer maintained older versions of dependencies are needed.
 
-##File Descriptions
+<h3>File Descriptions: </h3>
 
 Use:
