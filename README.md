@@ -26,9 +26,6 @@ Because QSTK is no longer maintained older versions of dependencies are needed.
 `$python client.py` </li>
 
 <li> Using the proj1 menu select 1 to ensure the client is connected. </li>
+<li> Additional clients can be added by repeating step 2. 
 <li> Begin the calculations and testing by selecting 3. </li>
-<\li>
-
-<ul>
-  <li> Additional clients can be added by repeating step 2. 
-<\ul>
+<\ol>
